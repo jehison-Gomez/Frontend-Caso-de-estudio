@@ -1,0 +1,25 @@
+.JDGD-modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 100;
+}
+.JDGD-modal {
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-lg);
+  width: 100%; max-width: 480px;
+  border: 0.5px solid var(--color-border);
+}
+.JDGD-modal-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 18px;
+  border-bottom: 0.5px solid var(--color-border);
+}
+.JDGD-modal-title { font-size: 14px; font-weight: 500; }
+.JDGD-modal-close { background: none; border: none; font-size: 14px; color: var(--color-text-secondary); }
+.JDGD-modal-body { padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+.JDGD-modal-footer {
+  display: flex; justify-content: flex-end; gap: 8px;
+  padding: 12px 18px;
+  border-top: 0.5px solid var(--color-border);
+}

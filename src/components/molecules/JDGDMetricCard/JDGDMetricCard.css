@@ -1,0 +1,8 @@
+.JDGD-metric-card {
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+}
+.JDGD-metric-label { font-size: 11px; color: var(--color-text-secondary); margin-bottom: 4px; }
+.JDGD-metric-value { font-size: 22px; font-weight: 500; color: var(--color-text-primary); }
+.JDGD-metric-sub { font-size: 11px; margin-top: 3px; color: var(--color-text-secondary); }

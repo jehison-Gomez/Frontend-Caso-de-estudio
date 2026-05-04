@@ -1,0 +1,10 @@
+.JDGD-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+.JDGD-page-title { font-size: 16px; font-weight: 500; color: var(--color-text-primary); }
+.JDGD-breadcrumb { font-size: 11px; color: var(--color-text-secondary); margin-top: 3px; }
+.JDGD-breadcrumb a { color: var(--color-primary); text-decoration: none; }
+.JDGD-breadcrumb a:hover { text-decoration: underline; }
