@@ -1,4 +1,4 @@
-import './JDGDInput.css'
+import '../JDGDInput/JDGDInput.css'
 
 const JDGDSelect = ({ label, name, value, onChange, options = [], required = false }) => (
   <div className="JDGD-input-group">
