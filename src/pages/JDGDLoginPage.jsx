@@ -22,8 +22,10 @@ const JDGDLoginPage = () => {
     setError('')
     try {
       const res = await JDGDLoginApi(form)
-      JDGDLogin(res.usuario, res.token)
-      navigate('/dashboard', { replace: true })
+      JDGDLogin(res.usuario)
+      const JDGDRol = res.usuario.rol
+      if (JDGDRol === 'cliente') navigate('/cliente/prestamos', { replace: true })
+      else navigate('/dashboard', { replace: true })
     } catch (err) {
       setError(err.message || 'Credenciales incorrectas')
     } finally {
