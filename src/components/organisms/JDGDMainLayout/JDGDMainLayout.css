@@ -43,3 +43,16 @@
 
 .JDGD-main { flex: 1; overflow-y: auto; background: var(--color-bg-tertiary); }
 .JDGD-content { padding: 20px 24px; max-width: 1200px; }
+
+.JDGD-logout-btn {
+  margin-top: 8px;
+  width: 100%;
+  padding: 6px;
+  font-size: 11px;
+  color: var(--color-danger);
+  background: none;
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+.JDGD-logout-btn:hover { background: var(--color-danger-light); }
