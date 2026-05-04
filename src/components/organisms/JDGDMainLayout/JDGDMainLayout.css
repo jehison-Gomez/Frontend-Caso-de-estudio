@@ -1,0 +1,45 @@
+.JDGD-layout { display: flex; height: 100vh; overflow: hidden; }
+
+.JDGD-sidebar {
+  width: 210px; flex-shrink: 0;
+  background: var(--color-bg-primary);
+  border-right: 0.5px solid var(--color-border);
+  display: flex; flex-direction: column;
+}
+.JDGD-sidebar-logo { padding: 18px 16px; border-bottom: 0.5px solid var(--color-border); }
+.JDGD-brand { font-size: 15px; font-weight: 500; color: var(--color-text-primary); }
+.JDGD-brand-sub { font-size: 11px; color: var(--color-text-secondary); margin-top: 2px; }
+
+.JDGD-nav { flex: 1; padding-top: 8px; }
+.JDGD-nav-section {
+  padding: 10px 16px 4px;
+  font-size: 10px; font-weight: 500;
+  color: var(--color-text-tertiary);
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+.JDGD-nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 16px;
+  font-size: 13px; color: var(--color-text-secondary);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  transition: background 0.12s;
+}
+.JDGD-nav-item:hover { background: var(--color-bg-secondary); color: var(--color-text-primary); }
+.JDGD-nav-item--active {
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+  border-left-color: var(--color-primary);
+  font-weight: 500;
+}
+.JDGD-nav-icon { font-size: 14px; opacity: 0.7; }
+
+.JDGD-sidebar-footer {
+  padding: 14px 16px;
+  border-top: 0.5px solid var(--color-border);
+}
+.JDGD-user-name { font-size: 12px; font-weight: 500; }
+.JDGD-user-role { font-size: 11px; color: var(--color-text-secondary); }
+
+.JDGD-main { flex: 1; overflow-y: auto; background: var(--color-bg-tertiary); }
+.JDGD-content { padding: 20px 24px; max-width: 1200px; }
