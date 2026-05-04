@@ -2,13 +2,16 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { JDGDAuthProvider } from './context/JDGDAuthContext'
 import JDGDProtectedRoute from './components/atoms/JDGDProtectedRoute/JDGDProtectedRoute'
 import JDGDMainLayout from './components/organisms/JDGDMainLayout/JDGDMainLayout'
+import JDGDClienteLayout from './components/organisms/JDGDClienteLayout/JDGDClienteLayout'
 import JDGDLoginPage from './pages/JDGDLoginPage'
-import JDGDDashboardPage from './pages/JDGDDashboardPage'
-import JDGDPersonasPage from './pages/JDGDPersonasPage'
-import JDGDPrestamosPage from './pages/JDGDPrestamosPage'
-import JDGDCuotasPage from './pages/JDGDCuotasPage'
-import JDGDMovimientosPage from './pages/JDGDMovimientosPage'
-import JDGDGastosPage from './pages/JDGDGastosPage'
+import JDGDDashboardPage from './pages/admin/JDGDDashboardPage'
+import JDGDPersonasPage from './pages/admin/JDGDPersonasPage'
+import JDGDPrestamosPage from './pages/admin/JDGDPrestamosPage'
+import JDGDCuotasPage from './pages/admin/JDGDCuotasPage'
+import JDGDMovimientosPage from './pages/admin/JDGDMovimientosPage'
+import JDGDGastosPage from './pages/admin/JDGDGastosPage'
+import JDGDClientePrestamosPage from './pages/cliente/JDGDClientePrestamosPage'
+import JDGDClienteCuotasPage from './pages/cliente/JDGDClienteCuotasPage'
 
 function App() {
   return (
@@ -16,8 +19,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<JDGDLoginPage />} />
+
           <Route path="/" element={
-            <JDGDProtectedRoute>
+            <JDGDProtectedRoute roles={['admin', 'cobrador']}>
               <JDGDMainLayout />
             </JDGDProtectedRoute>
           }>
@@ -29,6 +33,17 @@ function App() {
             <Route path="movimientos"          element={<JDGDMovimientosPage />} />
             <Route path="gastos"               element={<JDGDGastosPage />} />
           </Route>
+
+          <Route path="/cliente" element={
+            <JDGDProtectedRoute roles={['cliente']}>
+              <JDGDClienteLayout />
+            </JDGDProtectedRoute>
+          }>
+            <Route index element={<Navigate to="/cliente/prestamos" replace />} />
+            <Route path="prestamos"              element={<JDGDClientePrestamosPage />} />
+            <Route path="prestamos/:id/cuotas"   element={<JDGDClienteCuotasPage />} />
+          </Route>
+
         </Routes>
       </BrowserRouter>
     </JDGDAuthProvider>
