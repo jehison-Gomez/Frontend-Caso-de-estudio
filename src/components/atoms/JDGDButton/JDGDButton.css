@@ -1,0 +1,22 @@
+.JDGD-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: var(--radius-md);
+  border: 0.5px solid var(--color-border-medium);
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-size: 12px;
+  font-weight: 500;
+  transition: background 0.15s;
+}
+.JDGD-btn--md  { padding: 7px 16px; }
+.JDGD-btn--sm  { padding: 4px 10px; font-size: 11px; }
+.JDGD-btn--primary { background: var(--color-primary); color: #fff; border-color: var(--color-primary); }
+.JDGD-btn--primary:hover { background: #0C447C; }
+.JDGD-btn--ghost { background: var(--color-primary-light); color: var(--color-primary); border-color: var(--color-primary-mid); }
+.JDGD-btn--ghost:hover { background: var(--color-primary-mid); }
+.JDGD-btn--danger { background: var(--color-danger-light); color: var(--color-danger); border-color: #F7C1C1; }
+.JDGD-btn:hover { background: var(--color-bg-secondary); }
+.JDGD-btn--primary:hover, .JDGD-btn--ghost:hover { background: inherit; }
+.JDGD-btn:disabled { opacity: 0.5; cursor: not-allowed; }
