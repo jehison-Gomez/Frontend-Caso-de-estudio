@@ -1,5 +1,5 @@
 import './JDGDModal.css'
-import JDGDButton from '../atoms/JDGDButton'
+import JDGDButton from '../../atoms/JDGDButton/JDGDButton'
 
 const JDGDModal = ({ title, children, onClose, onConfirm, confirmLabel = 'Guardar', loading = false }) => (
   <div className="JDGD-modal-overlay" onClick={onClose}>
