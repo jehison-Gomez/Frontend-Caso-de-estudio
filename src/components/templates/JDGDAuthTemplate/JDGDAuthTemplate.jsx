@@ -1,4 +1,4 @@
-import '../styles/JDGDAuth.css'
+import '../../../styles/JDGDAuth.css'
 
 const JDGDAuthTemplate = ({ children }) => (
   <div className="JDGD-auth-layout">
