@@ -8,21 +8,45 @@ import JDGDModal from '../../components/molecules/JDGDModal/JDGDModal'
 import JDGDInput from '../../components/atoms/JDGDInput/JDGDInput'
 import JDGDSelect from '../../components/atoms/JDGDSelect/JDGDSelect'
 import JDGDUseFetch from '../../hooks/JDGDUseFetch'
-import { JDGDGetPrestamos, JDGDCreatePrestamo, JDGDGetPersonas } from '../../services/JDGDApi'
+import { JDGDGetPrestamos, JDGDCreatePrestamo, JDGDGetPersonas, JDGDUpdatePrestamo } from '../../services/JDGDApi'
 import '../../styles/JDGDCard.css'
 
-const JDGDEstadoColor = { activo: 'green', finalizado: 'blue', 'en mora': 'red', pendiente: 'amber' }
+const JDGDEstadoColor = { activo: 'green', finalizado: 'blue', 'en mora': 'red', mora: 'red', pendiente: 'amber' }
+const JDGDEstadoOpts = [
+  { value: 'activo',     label: 'Activo' },
+  { value: 'en mora',    label: 'En mora' },
+  { value: 'finalizado', label: 'Finalizado' },
+]
 const JDGDEmptyForm = { persona: '', fiador: '', valor_prestado: '', interes: '', tiempo: '', tipo: 'mensual' }
 
 const JDGDPrestamosPage = () => {
   const navigate = useNavigate()
   const { data: prestamos, loading, refetch } = JDGDUseFetch(JDGDGetPrestamos)
   const { data: personas } = JDGDUseFetch(JDGDGetPersonas)
-  const [showModal, setShowModal] = useState(false)
-  const [saving, setSaving]       = useState(false)
-  const [form, setForm]           = useState(JDGDEmptyForm)
+  const [showModal,       setShowModal]       = useState(false)
+  const [showEstadoModal, setShowEstadoModal] = useState(false)
+  const [estadoTarget,    setEstadoTarget]    = useState(null)
+  const [nuevoEstado,     setNuevoEstado]     = useState('')
+  const [saving,          setSaving]          = useState(false)
+  const [form,            setForm]            = useState(JDGDEmptyForm)
 
   const JDGDHandleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
+
+  const JDGDOpenEstado = (row) => {
+    setEstadoTarget(row)
+    setNuevoEstado(row.estado)
+    setShowEstadoModal(true)
+  }
+
+  const JDGDHandleCambiarEstado = async () => {
+    setSaving(true)
+    try {
+      await JDGDUpdatePrestamo(estadoTarget.id_prestamo, { ...estadoTarget, estado: nuevoEstado })
+      setShowEstadoModal(false)
+      refetch()
+    } catch (e) { alert(e.message) }
+    finally { setSaving(false) }
+  }
 
   const JDGDValorFuturo = () => {
     const p = parseFloat(form.valor_prestado) || 0
@@ -51,10 +75,15 @@ const JDGDPrestamosPage = () => {
     { key: 'tiempo',        label: 'Tiempo',  render: v => `${v} m` },
     { key: 'valor_futuro',  label: 'V. futuro', render: v => Number(v).toLocaleString('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }) },
     { key: 'estado',        label: 'Estado',  render: v => <JDGDBadge label={v} variant={JDGDEstadoColor[v] || 'gray'} /> },
-    { key: 'cuotas',        label: '',        render: (_, row) => (
-        <JDGDButton size="sm" variant="ghost" onClick={e => { e.stopPropagation(); navigate(`/prestamos/${row.id_prestamo}/cuotas`) }}>
-          Ver cuotas
-        </JDGDButton>
+    { key: 'cuotas', label: '', render: (_, row) => (
+        <div style={{ display: 'flex', gap: 6 }}>
+          <JDGDButton size="sm" variant="ghost" onClick={e => { e.stopPropagation(); navigate(`/prestamos/${row.id_prestamo}/cuotas`) }}>
+            Ver cuotas
+          </JDGDButton>
+          <JDGDButton size="sm" variant="secondary" onClick={e => { e.stopPropagation(); JDGDOpenEstado(row) }}>
+            Estado
+          </JDGDButton>
+        </div>
       )
     },
   ]
@@ -71,6 +100,21 @@ const JDGDPrestamosPage = () => {
           : <JDGDDataTable columns={JDGDColumns} data={prestamos || []} />
         }
       </div>
+
+      {showEstadoModal && (
+        <JDGDModal title="Cambiar estado del préstamo" onClose={() => setShowEstadoModal(false)} onConfirm={JDGDHandleCambiarEstado} loading={saving}>
+          <p style={{ fontSize: 13, color: 'var(--color-text-secondary)', marginBottom: 8 }}>
+            Préstamo #{estadoTarget?.id_prestamo} — {estadoTarget?.persona_nombre}
+          </p>
+          <JDGDSelect
+            label="Nuevo estado"
+            name="nuevoEstado"
+            value={nuevoEstado}
+            onChange={e => setNuevoEstado(e.target.value)}
+            options={JDGDEstadoOpts}
+          />
+        </JDGDModal>
+      )}
 
       {showModal && (
         <JDGDModal title="Nuevo préstamo" onClose={() => setShowModal(false)} onConfirm={JDGDHandleSave} loading={saving}>

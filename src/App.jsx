@@ -12,6 +12,8 @@ import JDGDMovimientosPage from './pages/admin/JDGDMovimientosPage'
 import JDGDGastosPage from './pages/admin/JDGDGastosPage'
 import JDGDClientePrestamosPage from './pages/cliente/JDGDClientePrestamosPage'
 import JDGDClienteCuotasPage from './pages/cliente/JDGDClienteCuotasPage'
+import JDGDReportesPage from './pages/admin/JDGDReportesPage'
+import JDGDSociedadesPage from './pages/admin/JDGDSociedadesPage'
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
             <Route path="prestamos/:id/cuotas" element={<JDGDCuotasPage />} />
             <Route path="movimientos"          element={<JDGDMovimientosPage />} />
             <Route path="gastos"               element={<JDGDGastosPage />} />
+            <Route path="reportes"             element={<JDGDReportesPage />} />
+            <Route path="sociedades"           element={<JDGDSociedadesPage />} />
           </Route>
 
           <Route path="/cliente" element={

@@ -56,3 +56,9 @@ export const JDGDGetGastos   = ()            => JDGDFetch('/JDGDGasto')
 export const JDGDCreateGasto = (data)        => JDGDFetch('/JDGDGasto', { method: 'POST', body: JSON.stringify(data) })
 export const JDGDUpdateGasto = (id, data)    => JDGDFetch(`/JDGDGasto/${id}`, { method: 'PUT', body: JSON.stringify(data) })
 export const JDGDDeleteGasto = (id)          => JDGDFetch(`/JDGDGasto/${id}`, { method: 'DELETE' })
+
+// Sociedades
+export const JDGDGetSociedades    = ()           => JDGDFetch('/JDGDSociedad')
+export const JDGDCreateSociedad   = (data)       => JDGDFetch('/JDGDSociedad', { method: 'POST', body: JSON.stringify(data) })
+export const JDGDUpdateSociedad   = (id, data)   => JDGDFetch(`/JDGDSociedad/${id}`, { method: 'PUT', body: JSON.stringify(data) })
+export const JDGDDeleteSociedad   = (id)         => JDGDFetch(`/JDGDSociedad/${id}`, { method: 'DELETE' })

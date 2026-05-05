@@ -1,5 +1,5 @@
 import { Outlet, NavLink, useNavigate } from 'react-router-dom'
-import { MdDashboard, MdPeople, MdCreditCard, MdSwapHoriz, MdAttachMoney } from 'react-icons/md'
+import { MdDashboard, MdPeople, MdCreditCard, MdSwapHoriz, MdAttachMoney, MdAssessment, MdBusiness } from 'react-icons/md'
 import { JDGDUseAuth } from '../../../context/JDGDAuthContext'
 import './JDGDMainLayout.css'
 
@@ -9,6 +9,8 @@ const JDGDNavItems = [
   { to: '/prestamos',   label: 'Préstamos',    icon: <MdCreditCard /> },
   { to: '/movimientos', label: 'Movimientos',  icon: <MdSwapHoriz /> },
   { to: '/gastos',      label: 'Gastos',       icon: <MdAttachMoney /> },
+  { to: '/sociedades',  label: 'Sociedades',   icon: <MdBusiness /> },
+  { to: '/reportes',    label: 'Reportes',     icon: <MdAssessment /> },
 ]
 
 const JDGDMainLayout = () => {
