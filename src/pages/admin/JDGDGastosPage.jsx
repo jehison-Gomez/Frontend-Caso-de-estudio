@@ -7,6 +7,7 @@ import JDGDModal from '../../components/molecules/JDGDModal/JDGDModal'
 import JDGDInput from '../../components/atoms/JDGDInput/JDGDInput'
 import JDGDSelect from '../../components/atoms/JDGDSelect/JDGDSelect'
 import JDGDUseFetch from '../../hooks/JDGDUseFetch'
+import JDGDFormatearFecha from '../../JDGDFormatearFecha'
 import {
   JDGDGetGastos,
   JDGDCreateGasto,
@@ -141,7 +142,7 @@ const JDGDGastosPage = () => {
   }
 
   const JDGDColumns = [
-    { key: 'fecha',   label: 'Fecha' },
+    { key: 'fecha',   label: 'Fecha', render: v => JDGDFormatearFecha(v)  },
     { key: 'detalle', label: 'Detalle' },
     {
       key: 'valor',

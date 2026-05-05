@@ -4,12 +4,13 @@ import JDGDBadge from '../../components/atoms/JDGDBadge/JDGDBadge'
 import JDGDUseFetch from '../../hooks/JDGDUseFetch'
 import { JDGDGetMovimientos } from '../../services/JDGDApi'
 import '../../styles/JDGDCard.css'
+import JDGDFormatearFecha from '../../JDGDFormatearFecha'
 
 const JDGDMovimientosPage = () => {
   const { data: movimientos, loading } = JDGDUseFetch(JDGDGetMovimientos)
 
   const JDGDColumns = [
-    { key: 'fecha',       label: 'Fecha' },
+    { key: 'fecha',       label: 'Fecha', render: v => JDGDFormatearFecha(v) },
     { key: 'tipo',        label: 'Tipo',   render: v => <JDGDBadge label={v} variant={v === 'ingreso' ? 'green' : 'red'} /> },
     { key: 'sociedad',    label: 'Sociedad' },
     { key: 'valor',       label: 'Valor',  render: (v, r) => (
@@ -18,7 +19,7 @@ const JDGDMovimientosPage = () => {
         </span>
       )
     },
-    { key: 'estado',      label: 'Estado', render: v => <JDGDBadge label={v} variant={v === 'confirmado' ? 'green' : 'amber'} /> },
+    { key: 'estado',      label: 'Estado', render: v => <JDGDBadge label={v} variant={v === 'activo' ? 'green' : 'amber'} /> },
   ]
 
   return (

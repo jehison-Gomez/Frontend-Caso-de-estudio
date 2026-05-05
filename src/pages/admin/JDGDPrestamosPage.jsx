@@ -11,10 +11,10 @@ import JDGDUseFetch from '../../hooks/JDGDUseFetch'
 import { JDGDGetPrestamos, JDGDCreatePrestamo, JDGDGetPersonas, JDGDUpdatePrestamo } from '../../services/JDGDApi'
 import '../../styles/JDGDCard.css'
 
-const JDGDEstadoColor = { activo: 'green', finalizado: 'blue', 'en mora': 'red', mora: 'red', pendiente: 'amber' }
+const JDGDEstadoColor = { activo: 'green', finalizado: 'blue', mora: 'red', pendiente: 'amber' }
 const JDGDEstadoOpts = [
   { value: 'activo',     label: 'Activo' },
-  { value: 'en mora',    label: 'En mora' },
+  { value: 'mora',       label: 'En mora' },
   { value: 'finalizado', label: 'Finalizado' },
 ]
 const JDGDEmptyForm = { persona: '', fiador: '', valor_prestado: '', interes: '', tiempo: '', tipo: 'mensual' }

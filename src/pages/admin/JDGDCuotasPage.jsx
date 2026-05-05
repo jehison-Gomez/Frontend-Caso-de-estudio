@@ -32,7 +32,7 @@ const JDGDCuotasPage = () => {
     { key: 'fecha_pago', label: 'Fecha pago', render: v => JDGDFormatearFecha(v) },
     { key: 'valor', label: 'Valor', render: v => Number(v).toLocaleString('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }) },
     { key: 'estado', label: 'Estado', render: v => <JDGDBadge label={v} variant={JDGDEstadoColor[v] || 'gray'} /> },
-    { key: 'fecha_recaudo', label: 'Fecha recaudo', render: v => v || '—' },
+    { key: 'fecha_recaudo', label: 'Fecha recaudo', render: v => v ? JDGDFormatearFecha(v) : '—' },
     { key: 'accion', label: '', render: (_, row) =>
         row.estado !== 'pagada'
           ? <JDGDButton size="sm" variant="ghost" onClick={() => JDGDHandlePagar(row)}>Registrar pago</JDGDButton>

@@ -20,7 +20,7 @@ const JDGDUseReportes = () => {
   const totalRecaudado = ingresos.reduce((s, m) => s + Number(m.valor), 0)
   const totalGastos    = gasts.reduce((s, g) => s + Number(g.valor), 0)
   const saldoNeto      = totalRecaudado - totalGastos
-  const enMora         = lista.filter(p => p.estado === 'en mora')
+  const enMora         = lista.filter(p => p.estado === 'mora')
   const activos        = lista.filter(p => p.estado === 'activo')
   const carteraPend    = activos.reduce((s, p) => s + Number(p.valor_futuro || p.valor_prestado), 0)
 
